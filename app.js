@@ -286,7 +286,7 @@ function appMenu() {
                         <div class="border bg-white">ID: ${member.getId()}</div>
                         <div class="border bg-white">Email: ${member.getEmail()}</div>
                         <div class="border bg-white">${roleOutput}</div>
-                        </div>`;
+                        </div></div>`;
 
       headHtml += memberDiv;
     });
