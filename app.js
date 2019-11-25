@@ -3,7 +3,6 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const fs = require("fs");
-const path = require("path");
 const teamMembers = [];
 const idArray = [];
 
@@ -247,29 +246,48 @@ function appMenu() {
       <title>My Team</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <link rel="stylesheet" href="style.css">
-      <script src="https://kit.fontawesome.com/c502137733.js"></script>
+      <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"
+      integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1"
+      crossorigin="anonymous"
+    ></script>
       </head>
       <body>
-      <div>`;
+      <div class="container-fluid">
+      <div
+        class="row bg-danger text-white d-flex justify-content-center align-items-center"
+        style="height: 100px;"
+      >
+        <h1>My Team</h1>
+      </div>`;
     teamMembers.forEach(member => {
       console.log(member.getRole());
       // Check what kind of position and set role specific output
-      roleOutput = "";
+      let roleSvg = "";
+      let roleOutput = "";
       if (member.getRole() === "Manager") {
+        roleSvg = `<i class="fas fa-mug-hot"></i>`;
         roleOutput = `Office Number: ${member.getOfficeNumber()}`;
       } else if (member.getRole() === "Engineer") {
+        roleSvg = `<i class="fas fa-glasses"></i>`;
         roleOutput = `GitHub Username: ${member.getGithub()}`;
       } else if (member.getRole() === "Intern") {
+        roleSvg = `<i class="fas fa-user-graduate"></i>`;
         roleOutput = `School: ${member.getSchool()}`;
       }
 
-      let memberDiv = `<div>${member.getName()}</div>
-                        <div>${member.getId()}</div>
-                        <div>${member.getEmail()}</div>
-                        <div>${roleOutput}</div>`;
+      let memberDiv = `<div class="card mb-3" style="max-width: 18rem;">
+      <div class="card-header text-white bg-primary">
+      <div>${member.getName()}</div>
+                        <div>${roleSvg} ${member.getRole()}</div>
+                        </div>
+                        <div class="card-body bg-light">
+                        <div class="border bg-white">ID: ${member.getId()}</div>
+                        <div class="border bg-white">Email: ${member.getEmail()}</div>
+                        <div class="border bg-white">${roleOutput}</div>
+                        </div>`;
 
-      console.log(memberDiv);
       headHtml += memberDiv;
     });
     const footerHtml = `
