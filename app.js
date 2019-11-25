@@ -253,9 +253,22 @@ function appMenu() {
       <body>
       <div>`;
     teamMembers.forEach(member => {
-      console.log(member);
+      console.log(member.getRole());
+      // Check what kind of position and set role specific output
+      roleOutput = "";
+      if (member.getRole() === "Manager") {
+        roleOutput = `Office Number: ${member.getOfficeNumber()}`;
+      } else if (member.getRole() === "Engineer") {
+        roleOutput = `GitHub Username: ${member.getGithub()}`;
+      } else if (member.getRole() === "Intern") {
+        roleOutput = `School: ${member.getSchool()}`;
+      }
+
       let memberDiv = `<div>${member.getName()}</div>
-                        <div>${member.getId()}</div>`;
+                        <div>${member.getId()}</div>
+                        <div>${member.getEmail()}</div>
+                        <div>${roleOutput}</div>`;
+
       console.log(memberDiv);
       headHtml += memberDiv;
     });
