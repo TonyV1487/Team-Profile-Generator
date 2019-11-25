@@ -260,7 +260,8 @@ function appMenu() {
         style="height: 100px;"
       >
         <h1>My Team</h1>
-      </div>`;
+      </div>
+      <div class="row justify-content-around">`;
     teamMembers.forEach(member => {
       console.log(member.getRole());
       // Check what kind of position and set role specific output
@@ -291,7 +292,8 @@ function appMenu() {
       headHtml += memberDiv;
     });
     const footerHtml = `
-      </div>
+    </div>  
+    </div>
       </body>
       </html>`;
     htmlString = headHtml + footerHtml;
